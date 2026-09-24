@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MLA Citation Basics — Branching Scenario</title>
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #faf7f2;
+    --panel: #ffffff;
+    --ink: #2b2620;
+    --ink-soft: #5c5346;
+    --accent: #8a4f2e;
+    --accent-soft: #f1e2d3;
+    --good: #2f6b3a;
+    --good-bg: #e5f3e6;
+    --bad: #9c3b2b;
+    --bad-bg: #fbe7e2;
+    --border: #e4d9c9;
+    --track: #eee3d3;
+    --btn-text: #ffffff;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1c1815; --panel: #26211c; --ink: #ece5da; --ink-soft: #b9ac98;
+      --accent: #d99b6c; --accent-soft: #3a2c20; --good: #7fd28c; --good-bg: #1e3223;
+      --bad: #e28a78; --bad-bg: #3a2420; --border: #3a3128; --track: #332b22;
+      --btn-text: #1c1815;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1c1815; --panel: #26211c; --ink: #ece5da; --ink-soft: #b9ac98;
+    --accent: #d99b6c; --accent-soft: #3a2c20; --good: #7fd28c; --good-bg: #1e3223;
+    --bad: #e28a78; --bad-bg: #3a2420; --border: #3a3128; --track: #332b22;
+    --btn-text: #1c1815;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 18px 60px; }
+
+  .header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin: 0;
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  .small-ghost {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.78rem;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .small-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .instructions { font-size: 0.95rem; margin: 0 0 12px; }
+  .passage {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    margin-bottom: 22px;
+  }
+  .passage p { margin: 0 0 12px; }
+  .works-cited { margin-top: 18px; }
+  .hang { padding-left: 1.5em; text-indent: -1.5em; margin: 0 0 8px; font-size: 0.95rem; }
+  .mla-link { font-size: 0.85rem; margin: -12px 0 22px; }
+
+  .progress { display: flex; gap: 4px; margin-bottom: 22px; }
+  .progress .seg { flex: 1; height: 5px; border-radius: 3px; background: var(--track); }
+  .progress .seg.done { background: var(--accent); }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 22px 24px;
+  }
+
+  .scenehead { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .backlink {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.82rem;
+    padding: 6px 13px;
+    border-radius: 18px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .backlink:hover { border-color: var(--accent); color: var(--accent); }
+
+  h2.qtitle {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.05rem;
+    margin-top: 0;
+    color: var(--accent);
+  }
+  .prompt { font-weight: bold; margin-bottom: 14px; }
+
+  .opt {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 13px 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.97rem;
+  }
+  .opt:hover { border-color: var(--accent); }
+
+  .ending-badge {
+    display: inline-block;
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .ending-badge.good { background: var(--good-bg); color: var(--good); }
+  .ending-badge.bad { background: var(--bad-bg); color: var(--bad); }
+
+  .why { font-size: 0.95rem; margin: 0 0 14px; }
+
+  .explain {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 0.95rem;
+  }
+  .explain strong { color: var(--accent); }
+
+  .recap-item { margin-bottom: 12px; font-size: 0.95rem; }
+  .recap-item strong { display: block; color: var(--accent); font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 0.85rem; margin-bottom: 2px; }
+
+  .navrow { display: flex; justify-content: flex-end; margin-top: 18px; }
+  button.primary, button.ghost {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.92rem;
+    padding: 10px 18px;
+    border-radius: 22px;
+    cursor: pointer;
+  }
+  button.primary { background: var(--accent); border: none; color: var(--btn-text); }
+  button.ghost { background: none; border: 1px solid var(--border); color: var(--ink-soft); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header-row">
+    <h1>📎 MLA Citation Basics</h1>
+    <button class="small-ghost" onclick="restart()">Start over</button>
+  </div>
+
+  <p class="instructions">Read the sample paper below, then work through the decisions underneath it. Click the choice you'd give your classmate at each step — choose correctly all the way through to complete the assignment.</p>
+
+  <div class="passage">
+    <div style="text-align:center; font-weight:bold; margin-bottom:10px;">The Rights of Dogs</div>
+    <p>While most discussion surrounding animal rights is focused on our consumption of meat and the treatment of farm animals, there is something missing from the general discussion. It's important to note, "We may feel comfortable with our dogs, but that doesn't mean they're living life to the fullest."</p>
+    <p>We forget that our best friends, domesticated dogs, often do not receive the necessary kindness for full comfort in the home. In the book, <em>K9 Revolution</em>, it's noted that dogs who are crated for over eight hours a day often have a behavioral response that shows discontent or discomfort (Thomas 19). This is often shown through a dog's anxieties and hyperactivity. At the same time, dogs tied to a line outside can show a unique form of anxiety, including panic in open spaces, or excessive excitement when approached by a family member (Thomas 12). The Home Dog Breeders Association points out that the best way to provide comfort for your dog is to allow them as much free movement as possible while owners are away ("Questions of Treatment").</p>
+    <div class="works-cited">
+      <div style="text-align:center; font-weight:bold; font-size:0.9rem; margin-bottom:8px;">Works Cited</div>
+      <p class="hang">Thomas, Miles. <em>K9 Revolution</em>. Random House, 2012.</p>
+      <p class="hang">"Questions of Treatment." <em>The Home Dog Breeder Guide</em>, The Home Dog Breeders Association, 2013, www.homedog.org/assoc/breederguide/faq. Accessed 2 Feb. 2019.</p>
+    </div>
+  </div>
+  <p class="mla-link">Need a refresher on quoting rules? <a href="https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_quotations.html" target="_blank" rel="noopener">Purdue OWL: MLA quotations</a>.</p>
+
+  <div class="progress" id="progress"></div>
+  <main>
+    <div class="card" id="scene" tabindex="-1"></div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // ---- SCORM integration (no-ops harmlessly when not launched from an LMS) ----
+  var scorm = (function(){
+    var API = null, version = null, tries = 0;
+    function findAPI(win){
+      while (win.API == null && win.API_1484_11 == null && win.parent != null && win.parent != win) {
+        tries++;
+        if (tries > 500) return null;
+        win = win.parent;
+      }
+      if (win.API_1484_11) { version = '2004'; return win.API_1484_11; }
+      if (win.API) { version = '1.2'; return win.API; }
+      return null;
+    }
+    function getAPI(){ var a = findAPI(window); if (!a && window.opener) a = findAPI(window.opener); return a; }
+    function init(){
+      try {
+        API = getAPI();
+        if (!API) return false;
+        var r = (version === '2004') ? API.Initialize('') : API.LMSInitialize('');
+        return (r === 'true' || r === true);
+      } catch(e) { return false; }
+    }
+    function setValue(name, value){
+      if (!API) return false;
+      try { var r = (version === '2004') ? API.SetValue(name, value) : API.LMSSetValue(name, value); return (r === 'true' || r === true); }
+      catch(e) { return false; }
+    }
+    function getValue(name){
+      if (!API) return '';
+      try { return (version === '2004') ? API.GetValue(name) : API.LMSGetValue(name); }
+      catch(e) { return ''; }
+    }
+    function commit(){
+      if (!API) return false;
+      try { var r = (version === '2004') ? API.Commit('') : API.LMSCommit(''); return (r === 'true' || r === true); }
+      catch(e) { return false; }
+    }
+    function reportOutcome(passed){
+      if (!API) return;
+      var pct = passed ? 100 : 0;
+      if (version === '2004') {
+        setValue('cmi.score.scaled', passed ? '1.0' : '0.0');
+        setValue('cmi.score.raw', String(pct));
+        setValue('cmi.score.min', '0');
+        setValue('cmi.score.max', '100');
+        setValue('cmi.completion_status', 'completed');
+        setValue('cmi.success_status', passed ? 'passed' : 'failed');
+      } else {
+        setValue('cmi.core.score.raw', String(pct));
+        setValue('cmi.core.lesson_status', passed ? 'passed' : 'failed');
+      }
+      commit();
+    }
+    function saveSuspendData(obj){ try { setValue('cmi.suspend_data', JSON.stringify(obj)); commit(); } catch(e) {} }
+    function loadSuspendData(){
+      try { var raw = getValue('cmi.suspend_data'); return raw ? JSON.parse(raw) : null; }
+      catch(e) { return null; }
+    }
+    return { init: init, hasAPI: function(){ return !!API; }, reportOutcome: reportOutcome,
+             saveSuspendData: saveSuspendData, loadSuspendData: loadSuspendData };
+  })();
+  var scormActive = scorm.init();
+
+  var STORAGE_KEY = 'mla_branch_v3';
+  function saveLocal(obj){ try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch(e) {} }
+  function loadLocal(){ try { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null; } catch(e) { return null; } }
+
+  var decisions = [
+    {
+      prompt: 'Your classmate asks what MLA even is. What do you tell them?',
+      options: [
+        { text: 'This paper needs MLA style — the citation and formatting rules our class uses.', correct: true },
+        { text: "MLA doesn't really matter for a class like this.", correct: false },
+        { text: 'MLA is a legal citation format, not something used in English class.', correct: false }
+      ],
+      explanation: 'MLA (Modern Language Association) style is the set of citation and formatting rules this class uses — it\'s what tells readers where borrowed ideas came from.'
+    },
+    {
+      prompt: 'They ask, "How many sources did I even use?" How do you find out?',
+      options: [
+        { text: 'Count the entries in the Works Cited list — there are two.', correct: true },
+        { text: 'Count how many times quotation marks appear.', correct: false },
+        { text: 'It doesn\'t really matter how many sources are used.', correct: false }
+      ],
+      explanation: 'The Works Cited list shows every source used — here, there are two: the Thomas book and the "Questions of Treatment" webpage.'
+    },
+    {
+      prompt: 'They notice (Thomas 19) in one spot and (Thomas 12) in another. What\'s going on?',
+      options: [
+        { text: 'Those are two different pages of Thomas\'s book where those ideas came from.', correct: true },
+        { text: 'That\'s a typo — a source can only be cited with one page number, ever.', correct: false },
+        { text: 'It means there are two different authors named Thomas.', correct: false }
+      ],
+      explanation: 'Different page numbers after the same author\'s name mean the writer pulled information from two different spots in that source.'
+    },
+    {
+      prompt: 'The "Questions of Treatment" source has no listed author. What goes in its in-text citation instead?',
+      options: [
+        { text: 'A shortened version of the title, in quotation marks.', correct: true },
+        { text: 'Nothing — sources without authors don\'t need an in-text citation.', correct: false },
+        { text: 'The full web address.', correct: false }
+      ],
+      explanation: 'When a source has no listed author, MLA style has you cite it by a shortened version of its title instead.'
+    },
+    {
+      prompt: 'The opening line is in quotation marks but has nothing after it. What\'s the problem?',
+      options: [
+        { text: 'It\'s technically plagiarism — a quote needs a citation showing where it came from.', correct: true },
+        { text: 'Nothing\'s wrong — quotation marks alone are enough.', correct: false },
+        { text: 'It\'s fine since it\'s only one sentence.', correct: false }
+      ],
+      explanation: 'Quotation marks signal borrowed language — without a citation after it, there\'s no way to trace where it came from. That\'s what makes it plagiarism, even unintentionally.'
+    },
+    {
+      prompt: 'Which version below correctly quotes and cites Thomas\'s idea about crated dogs?',
+      options: [
+        { text: 'Thomas notes that crated dogs "often have a behavioral response that shows discontent or discomfort" (19).', correct: true },
+        { text: 'Thomas notes that crated dogs often have a behavioral response that shows discontent or discomfort.', correct: false },
+        { text: '"Dogs often have a behavioral response that shows discontent or discomfort" (Random House, 2012).', correct: false }
+      ],
+      explanation: 'Borrowed wording needs quotation marks around it. Since the sentence already names Thomas, the parenthetical only needs the page number — (19) — not the publisher or year.'
+    }
+  ];
+
+  var current = 'start'; // 'start' | decision index (number) | 'right' | 'wrong'
+  var missedIndex = null;
+
+  function render(){
+    var scene = document.getElementById('scene');
+    var html = '';
+    var showProgress = true;
+
+    if (current === 'start') {
+      html += '<h2 class="qtitle">Ready?</h2>';
+      html += '<p>Work through six quick decisions based on the paper above. Pick the answer you\'d actually give your classmate at each step.</p>';
+      html += '<div class="navrow"><button class="primary" onclick="goDecision(0)">Start →</button></div>';
+    }
+    else if (typeof current === 'number') {
+      var d = decisions[current];
+      html += '<div class="scenehead">';
+      html += '<button class="backlink" onclick="goBack()">← Back</button>';
+      html += '<h2 class="qtitle" style="margin:0;">Decision ' + (current + 1) + ' of ' + decisions.length + '</h2>';
+      html += '</div>';
+      html += '<p class="prompt">' + d.prompt + '</p>';
+      d.options.forEach(function(opt, i){
+        html += '<button class="opt" onclick="choose(' + current + ',' + i + ')">' + opt.text + '</button>';
+      });
+    }
+    else if (current === 'right') {
+      showProgress = false;
+      html += '<span class="ending-badge good">✅ COMPLETE</span>';
+      html += '<h2 class="qtitle" style="margin-top:0;">You earned a grade of Complete</h2>';
+      html += '<p class="why">You worked through all six decisions and chose the correct option every time — that\'s why this assignment is marked complete. Here\'s a recap of why each answer was right:</p>';
+      decisions.forEach(function(d, i){
+        html += '<div class="recap-item"><strong>Decision ' + (i+1) + '</strong>' + d.explanation + '</div>';
+      });
+      html += '<div class="navrow"><button class="ghost" onclick="restart()">Start over</button></div>';
+    }
+    else if (current === 'wrong') {
+      showProgress = false;
+      var d = decisions[missedIndex];
+      html += '<span class="ending-badge bad">❌ INCOMPLETE</span>';
+      html += '<h2 class="qtitle" style="margin-top:0;">You earned a grade of Incomplete</h2>';
+      html += '<p class="why">On Decision ' + (missedIndex + 1) + ' — "' + d.prompt + '" — you picked an answer that wasn\'t quite right, which is why this assignment is marked incomplete.</p>';
+      html += '<div class="explain"><strong>Here\'s the correct answer:</strong> ' + d.explanation + '</div>';
+      html += '<div class="navrow"><button class="primary" onclick="restart()">Try again</button></div>';
+    }
+
+    scene.innerHTML = html;
+    scene.focus();
+    updateProgress(showProgress);
+  }
+
+  window.goDecision = function(i){ current = i; render(); };
+
+  window.goBack = function(){
+    if (typeof current !== 'number') return;
+    current = (current === 0) ? 'start' : current - 1;
+    render();
+  };
+
+  window.choose = function(decisionIndex, optionIndex){
+    var opt = decisions[decisionIndex].options[optionIndex];
+    if (opt.correct) {
+      if (decisionIndex === decisions.length - 1) {
+        finish(true);
+      } else {
+        current = decisionIndex + 1;
+        render();
+      }
+    } else {
+      missedIndex = decisionIndex;
+      finish(false);
+    }
+  };
+
+  function finish(passed){
+    current = passed ? 'right' : 'wrong';
+    saveLocal({ done: true, passed: passed, missedIndex: missedIndex });
+    if (scormActive) scorm.saveSuspendData({ done: true, passed: passed, missedIndex: missedIndex });
+    scorm.reportOutcome(passed);
+    render();
+  }
+
+  window.restart = function(){
+    current = 'start';
+    missedIndex = null;
+    saveLocal({ done: false });
+    if (scormActive) scorm.saveSuspendData({ done: false });
+    render();
+  };
+
+  function updateProgress(show){
+    var wrap = document.getElementById('progress');
+    if (!show) { wrap.innerHTML = ''; wrap.removeAttribute('role'); return; }
+    var total = decisions.length + 1; // +1 for the "start" screen
+    var at = (current === 'start') ? 0 : (current + 1);
+    wrap.setAttribute('role', 'progressbar');
+    wrap.setAttribute('aria-valuemin', '1');
+    wrap.setAttribute('aria-valuemax', String(total));
+    wrap.setAttribute('aria-valuenow', String(at + 1));
+    wrap.setAttribute('aria-valuetext', 'Step ' + (at + 1) + ' of ' + total);
+    wrap.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var seg = document.createElement('div');
+      seg.className = 'seg' + (i <= at ? ' done' : '');
+      seg.setAttribute('aria-hidden', 'true');
+      wrap.appendChild(seg);
+    }
+  }
+
+  // ---- init: resume a finished attempt if one exists ----
+  var restored = scormActive ? scorm.loadSuspendData() : loadLocal();
+  if (restored && restored.done) {
+    missedIndex = (typeof restored.missedIndex === 'number') ? restored.missedIndex : null;
+    current = restored.passed ? 'right' : 'wrong';
+  }
+  render();
+})();
+</script>
+</body>
+</html>
